@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Register</h1>
+    <form method="POST">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.username.label }} {{ form.username }}
+            {% for error in form.username.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password.label }} {{ form.password }}
+            {% for error in form.password.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+{% endblock %}

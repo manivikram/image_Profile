@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1>Upload Image</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <div>
+      {{ form.image.label }}
+      {{ form.image() }}
+    </div>
+    <div>
+      {{ form.title.label }}
+      {{ form.title() }}
+    </div>
+    <div>
+      <input type="submit" value="Upload">
+    </div>
+  </form>
+{% endblock %}
+
+
+<style type="text/css">
+form {
+    margin: 20px auto;
+    width: 400px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #ccc;
+  }
+  
+  form h1 {
+    text-align: center;
+  }
+  
+  ul.messages {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+  
+  ul.messages li {
+    list-style: none;
+    color: #ff0000;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  form input[type="text"],
+  form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  form input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .error {
+    color: #ff0000;
+  }
+</style>
